@@ -1,0 +1,5 @@
+{
+  "name": "Hero Tower Defense",
+  "description": "A vertical tower defense game where a Hero guards the base against 10 waves of monsters per level. Gain EXP, level up, and choose strategic skill upgrades.",
+  "requestFramePermissions": []
+}
