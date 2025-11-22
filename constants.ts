@@ -14,6 +14,7 @@ export const GACHA_COST_10 = 1000; // Cost for 10 pulls
 
 // --- DATABASE MOCK DATA ---
 
+// Robohash Set 5 provides Human-like/Fantasy sprites which fit the 2D game style better
 export const HERO_POOL: HeroMetadata[] = [
   // --- SSR (Legendary) - 5 Units ---
   {
@@ -21,7 +22,7 @@ export const HERO_POOL: HeroMetadata[] = [
     name: 'Arthur, King of Knights',
     rarity: Rarity.SSR,
     description: 'Wields the holy sword. High Damage & Crit.',
-    avatarUrl: 'https://api.dicebear.com/9.x/adventurer/svg?seed=Arthur&backgroundColor=b6e3f4',
+    avatarUrl: 'https://robohash.org/ArthurSSR?set=set5&size=150x150',
     baseStats: { damage: 35, attackSpeed: 1.2, range: 65, critChance: 0.3, critMultiplier: 2.5 }
   },
   {
@@ -29,7 +30,7 @@ export const HERO_POOL: HeroMetadata[] = [
     name: 'Merlin the Void',
     rarity: Rarity.SSR,
     description: 'Master of arcane arts. Slow attacks, massive AoE potential.',
-    avatarUrl: 'https://api.dicebear.com/9.x/adventurer/svg?seed=Merlin&backgroundColor=c0aede',
+    avatarUrl: 'https://robohash.org/MerlinTheGreat?set=set5&size=150x150',
     baseStats: { damage: 45, attackSpeed: 0.6, range: 85, critChance: 0.2, critMultiplier: 3.0 }
   },
   {
@@ -37,7 +38,7 @@ export const HERO_POOL: HeroMetadata[] = [
     name: 'Brunhilde',
     rarity: Rarity.SSR,
     description: 'Divine warrior. Extremely fast attacks.',
-    avatarUrl: 'https://api.dicebear.com/9.x/adventurer/svg?seed=Brunhilde&backgroundColor=ffdfbf',
+    avatarUrl: 'https://robohash.org/ValkyrieGoddess?set=set5&size=150x150',
     baseStats: { damage: 18, attackSpeed: 2.5, range: 60, critChance: 0.25, critMultiplier: 1.8 }
   },
   {
@@ -45,7 +46,7 @@ export const HERO_POOL: HeroMetadata[] = [
     name: 'Azazel',
     rarity: Rarity.SSR,
     description: 'Dark lord. Balances damage and speed.',
-    avatarUrl: 'https://api.dicebear.com/9.x/adventurer/svg?seed=Azazel&backgroundColor=ffdfbf',
+    avatarUrl: 'https://robohash.org/DemonLordAzazel?set=set5&size=150x150',
     baseStats: { damage: 28, attackSpeed: 1.5, range: 70, critChance: 0.2, critMultiplier: 2.2 }
   },
   {
@@ -53,7 +54,7 @@ export const HERO_POOL: HeroMetadata[] = [
     name: 'Draco',
     rarity: Rarity.SSR,
     description: 'Humanoid Dragon. High stats all around.',
-    avatarUrl: 'https://api.dicebear.com/9.x/adventurer/svg?seed=Draco&backgroundColor=d1d4f9',
+    avatarUrl: 'https://robohash.org/DragonWarrior?set=set5&size=150x150',
     baseStats: { damage: 30, attackSpeed: 1.3, range: 75, critChance: 0.15, critMultiplier: 2.0 }
   },
 
@@ -63,7 +64,7 @@ export const HERO_POOL: HeroMetadata[] = [
     name: 'Elara Windrunner',
     rarity: Rarity.SR,
     description: 'Expert marksman. High range.',
-    avatarUrl: 'https://api.dicebear.com/9.x/adventurer/svg?seed=Elara&backgroundColor=b6e3f4',
+    avatarUrl: 'https://robohash.org/ElaraRanger?set=set5&size=150x150',
     baseStats: { damage: 15, attackSpeed: 1.8, range: 90, critChance: 0.15, critMultiplier: 1.8 }
   },
   {
@@ -71,7 +72,7 @@ export const HERO_POOL: HeroMetadata[] = [
     name: 'Sir Galahad',
     rarity: Rarity.SR,
     description: 'Heavy hitter but slow.',
-    avatarUrl: 'https://api.dicebear.com/9.x/adventurer/svg?seed=Galahad&backgroundColor=ffd5dc',
+    avatarUrl: 'https://robohash.org/PaladinGalahad?set=set5&size=150x150',
     baseStats: { damage: 22, attackSpeed: 0.9, range: 50, critChance: 0.1, critMultiplier: 1.5 }
   },
   {
@@ -79,7 +80,7 @@ export const HERO_POOL: HeroMetadata[] = [
     name: 'Kael Shadow',
     rarity: Rarity.SR,
     description: 'High crit chance assassin.',
-    avatarUrl: 'https://api.dicebear.com/9.x/adventurer/svg?seed=Kael&backgroundColor=c0aede',
+    avatarUrl: 'https://robohash.org/RogueShadow?set=set5&size=150x150',
     baseStats: { damage: 12, attackSpeed: 2.0, range: 55, critChance: 0.4, critMultiplier: 2.0 }
   },
   {
@@ -87,7 +88,7 @@ export const HERO_POOL: HeroMetadata[] = [
     name: 'Morgana',
     rarity: Rarity.SR,
     description: 'Witch of the wilds.',
-    avatarUrl: 'https://api.dicebear.com/9.x/adventurer/svg?seed=Morgana&backgroundColor=d1d4f9',
+    avatarUrl: 'https://robohash.org/WitchMorgana?set=set5&size=150x150',
     baseStats: { damage: 18, attackSpeed: 1.1, range: 75, critChance: 0.15, critMultiplier: 1.8 }
   },
   {
@@ -95,7 +96,7 @@ export const HERO_POOL: HeroMetadata[] = [
     name: 'Cid Mechanist',
     rarity: Rarity.SR,
     description: 'Uses tech to fight.',
-    avatarUrl: 'https://api.dicebear.com/9.x/adventurer/svg?seed=Cid&backgroundColor=ffdfbf',
+    avatarUrl: 'https://robohash.org/MechanistCid?set=set5&size=150x150',
     baseStats: { damage: 14, attackSpeed: 1.6, range: 65, critChance: 0.1, critMultiplier: 1.6 }
   },
 
@@ -105,7 +106,7 @@ export const HERO_POOL: HeroMetadata[] = [
     name: 'City Guard',
     rarity: Rarity.R,
     description: 'Standard defense unit.',
-    avatarUrl: 'https://api.dicebear.com/9.x/adventurer/svg?seed=Guard&backgroundColor=b6e3f4',
+    avatarUrl: 'https://robohash.org/CityGuard1?set=set5&size=150x150',
     baseStats: { damage: 10, attackSpeed: 1.0, range: 60, critChance: 0.05, critMultiplier: 1.5 }
   },
   {
@@ -113,7 +114,7 @@ export const HERO_POOL: HeroMetadata[] = [
     name: 'Forest Scout',
     rarity: Rarity.R,
     description: 'Fast but weak.',
-    avatarUrl: 'https://api.dicebear.com/9.x/adventurer/svg?seed=Scout&backgroundColor=d1d4f9',
+    avatarUrl: 'https://robohash.org/Scout2?set=set5&size=150x150',
     baseStats: { damage: 6, attackSpeed: 1.5, range: 70, critChance: 0.1, critMultiplier: 1.5 }
   },
   {
@@ -121,7 +122,7 @@ export const HERO_POOL: HeroMetadata[] = [
     name: 'Magic Student',
     rarity: Rarity.R,
     description: 'Learning the arts.',
-    avatarUrl: 'https://api.dicebear.com/9.x/adventurer/svg?seed=Student&backgroundColor=c0aede',
+    avatarUrl: 'https://robohash.org/MageStudent?set=set5&size=150x150',
     baseStats: { damage: 12, attackSpeed: 0.8, range: 65, critChance: 0.05, critMultiplier: 1.5 }
   },
   {
@@ -129,7 +130,7 @@ export const HERO_POOL: HeroMetadata[] = [
     name: 'Mercenary',
     rarity: Rarity.R,
     description: 'Fights for coin.',
-    avatarUrl: 'https://api.dicebear.com/9.x/adventurer/svg?seed=Merc&backgroundColor=ffdfbf',
+    avatarUrl: 'https://robohash.org/MercenaryX?set=set5&size=150x150',
     baseStats: { damage: 11, attackSpeed: 0.9, range: 55, critChance: 0.08, critMultiplier: 1.5 }
   },
   {
@@ -137,7 +138,7 @@ export const HERO_POOL: HeroMetadata[] = [
     name: 'Hunter',
     rarity: Rarity.R,
     description: 'Basic ranged unit.',
-    avatarUrl: 'https://api.dicebear.com/9.x/adventurer/svg?seed=Hunter&backgroundColor=ffd5dc',
+    avatarUrl: 'https://robohash.org/HunterBow?set=set5&size=150x150',
     baseStats: { damage: 8, attackSpeed: 1.2, range: 75, critChance: 0.05, critMultiplier: 1.5 }
   }
 ];

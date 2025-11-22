@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { HeroState, UpgradeOption, GameStatus, SkillType, ViewState, UserProfile, HeroMetadata, Rarity, Difficulty } from '../types';
 import { HERO_POOL, SKILL_POOL, GACHA_COST, GACHA_COST_10 } from '../constants';
-import { Heart, Zap, Shield, Play, RotateCw, FastForward, Snowflake, Flame, Layers, Sparkles, ChevronRight, User, Gem, Menu, Star, Sword, BookOpen, X, Lock, LogIn, Pause, AlertTriangle } from 'lucide-react';
+import { Heart, Zap, Shield, Play, RotateCw, FastForward, Snowflake, Flame, Layers, Sparkles, ChevronRight, User, Gem, Menu, Star, Sword, BookOpen, X, Lock, LogIn, Pause, AlertTriangle, Share2 } from 'lucide-react';
 
 // --- HELPER: Star Renderer ---
 const renderStars = (starCount: number) => {
@@ -778,6 +778,13 @@ interface GameOverModalProps {
 export const GameOverModal: React.FC<GameOverModalProps> = ({ status, score, wave, onRestart, onHome, onNextLevel, onGacha }) => {
   const isVictory = status === GameStatus.VICTORY;
   
+  const handleShare = () => {
+      const text = `🏰 Hero Tower Defense: I survived Wave ${wave} with a Score of ${score}! Can you beat me?`;
+      navigator.clipboard.writeText(text).then(() => {
+          alert("Result copied to clipboard! Send it to your friends!");
+      });
+  };
+  
   return (
     <div className="absolute inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
       <div className="bg-slate-900 p-6 rounded-3xl border-2 border-slate-700 max-w-sm w-full text-center shadow-2xl relative overflow-hidden">
@@ -807,6 +814,14 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({ status, score, wav
                 </div>
             </div>
             </div>
+            
+            {/* SHARE BUTTON */}
+            <button 
+                onClick={handleShare}
+                className="w-full py-2 mb-4 bg-blue-600/20 hover:bg-blue-600/40 text-blue-200 font-bold text-xs rounded-lg flex items-center justify-center gap-2 transition-colors border border-blue-500/30"
+            >
+                <Share2 size={14} /> Share Result
+            </button>
 
             {/* Gacha Recommendation on Defeat */}
             {!isVictory && onGacha && (

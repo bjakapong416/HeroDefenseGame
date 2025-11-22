@@ -179,28 +179,28 @@ const GameEngine: React.FC<GameEngineProps> = ({ userProfile, onGameOver, onHome
     const type = types[Math.floor(Math.random() * types.length)];
     let hp = 20 * totalMult;
     let speed = 5; 
-    let width = 8;
-    let height = 8; 
+    let width = 10;
+    let height = 10; 
     let reward = 5 + currentWave; 
     
     if (type === 'speedster') { 
         speed = 12; 
         hp = 15 * totalMult; 
-        width=7; 
+        width=9; 
         reward = 8 + currentWave;
     }
     if (type === 'tank') { 
         speed = 3; 
         hp = 60 * totalMult; 
-        width=10; 
-        height=10; 
+        width=14; 
+        height=14; 
         reward = 15 + (currentWave * 2);
     }
     if (type === 'brute') { 
         speed = 4; 
         hp = 150 * totalMult; 
-        width=12; 
-        height=12; 
+        width=16; 
+        height=16; 
         reward = 40 + (currentWave * 5); 
     }
 
@@ -551,52 +551,59 @@ const GameEngine: React.FC<GameEngineProps> = ({ userProfile, onGameOver, onHome
       );
   };
 
-  const getMonsterVisual = (type: string) => {
-      switch(type) {
+  const getMonsterVisual = (monster: Monster) => {
+      // Use RoboHash Set 2 (Monsters)
+      const spriteUrl = `https://robohash.org/${monster.id}?set=set2&size=150x150`;
+
+      switch(monster.type) {
           case 'boss':
              return (
-                 <div className="w-full h-full relative flex items-center justify-center animate-pulse">
-                     <div className="w-full h-full bg-gradient-to-b from-red-700 to-black rounded-full border-4 border-red-500 shadow-[0_0_30px_rgba(239,68,68,0.8)] flex items-center justify-center relative z-20">
-                         <Crown size="60%" className="text-yellow-400 fill-yellow-400 drop-shadow-lg" />
+                 <div className="w-full h-full relative flex items-center justify-center">
+                     {/* Boss Aura */}
+                     <div className="absolute inset-0 bg-red-600/30 blur-xl rounded-full animate-pulse z-0"></div>
+                     <img src={spriteUrl} alt="Boss" className="relative z-10 w-full h-full object-contain drop-shadow-[0_0_15px_rgba(239,68,68,0.9)]" />
+                     {/* Crown Overlay */}
+                     <div className="absolute -top-6 z-20 animate-bounce">
+                        <Crown size={24} className="text-yellow-400 fill-yellow-400 drop-shadow-md" />
                      </div>
-                     <div className="absolute -bottom-4 w-full h-4 bg-black/70 rounded-[100%] blur-md z-0"></div>
-                     <div className="absolute -inset-2 border-2 border-red-500/50 rounded-full animate-ping"></div>
                  </div>
              );
           case 'tank': 
             return (
                 <div className="w-full h-full relative flex items-center justify-center">
-                     <div className="w-full h-full bg-gradient-to-b from-slate-500 to-slate-800 rounded-xl border-2 border-slate-400 shadow-lg flex items-center justify-center relative z-10">
-                        <Shield size="70%" className="text-slate-300" fill="currentColor" fillOpacity={0.3} />
+                     <div className="absolute inset-0 bg-blue-600/20 blur-md rounded-full z-0"></div>
+                     <img src={spriteUrl} alt="Tank" className="relative z-10 w-full h-full object-contain drop-shadow-[0_0_5px_rgba(37,99,235,0.8)]" />
+                     {/* Shield Badge */}
+                     <div className="absolute -bottom-1 -right-1 z-20 bg-slate-900 rounded-full p-1 border border-slate-600">
+                        <Shield size={10} className="text-blue-400 fill-blue-900" />
                      </div>
-                     <div className="absolute -bottom-2 w-[80%] h-3 bg-black/50 rounded-[100%] blur-sm z-0"></div>
                 </div>
             );
           case 'speedster': 
              return (
                 <div className="w-full h-full relative flex items-center justify-center">
-                     <div className="w-full h-full bg-gradient-to-b from-yellow-400 to-orange-600 rounded-full border-2 border-yellow-200 shadow-lg flex items-center justify-center relative z-10">
-                        <Wind size="60%" className="text-white" />
+                     <div className="absolute inset-0 bg-yellow-500/10 blur-sm rounded-full z-0"></div>
+                     {/* Skew for speed effect */}
+                     <img src={spriteUrl} alt="Speedster" className="relative z-10 w-full h-full object-contain drop-shadow-[0_0_5px_rgba(234,179,8,0.8)] skew-x-[-12deg]" />
+                     <div className="absolute -bottom-1 -right-1 z-20 bg-slate-900 rounded-full p-1 border border-slate-600">
+                        <Wind size={10} className="text-yellow-400" />
                      </div>
-                     <div className="absolute -bottom-2 w-[80%] h-3 bg-black/50 rounded-[100%] blur-sm z-0"></div>
                 </div>
             );
           case 'brute': 
              return (
                 <div className="w-full h-full relative flex items-center justify-center">
-                     <div className="w-full h-full bg-gradient-to-b from-purple-600 to-indigo-900 rounded-2xl border-2 border-purple-400 shadow-lg flex items-center justify-center relative z-10 rotate-45">
-                        <div className="-rotate-45"><Skull size="60%" className="text-purple-200" fill="currentColor" fillOpacity={0.3} /></div>
+                     <div className="absolute inset-0 bg-purple-600/20 blur-md rounded-full z-0"></div>
+                     <img src={spriteUrl} alt="Brute" className="relative z-10 w-full h-full object-contain drop-shadow-[0_0_8px_rgba(147,51,234,0.8)]" />
+                     <div className="absolute -bottom-1 -right-1 z-20 bg-slate-900 rounded-full p-1 border border-slate-600">
+                        <Skull size={10} className="text-purple-400" />
                      </div>
-                     <div className="absolute -bottom-3 w-[80%] h-3 bg-black/50 rounded-[100%] blur-sm z-0"></div>
                 </div>
             );
           default: // Minion
              return (
                 <div className="w-full h-full relative flex items-center justify-center">
-                     <div className="w-full h-full bg-gradient-to-b from-emerald-400 to-teal-700 rounded-t-full rounded-b-lg border-2 border-emerald-200 shadow-lg flex items-center justify-center relative z-10">
-                        <Ghost size="60%" className="text-emerald-100" />
-                     </div>
-                     <div className="absolute -bottom-2 w-[80%] h-3 bg-black/50 rounded-[100%] blur-sm z-0"></div>
+                     <img src={spriteUrl} alt="Minion" className="relative z-10 w-full h-full object-contain drop-shadow-[0_0_2px_rgba(255,255,255,0.4)]" />
                 </div>
             );
       }
@@ -619,11 +626,11 @@ const GameEngine: React.FC<GameEngineProps> = ({ userProfile, onGameOver, onHome
                     {m.type === 'boss' && <div className="absolute inset-0 flex items-center justify-center text-[8px] font-black uppercase text-white drop-shadow-md">BOSS</div>}
                 </div>
                 
-                {getMonsterVisual(m.type)}
+                {getMonsterVisual(m)}
                 
                 {/* Frozen Status Effect */}
                 {m.frozen && m.frozen > gameTimeRef.current && 
-                    <div className="absolute inset-0 bg-cyan-400/40 rounded-full animate-pulse border-2 border-white shadow-[0_0_10px_rgba(34,211,238,0.8)] pointer-events-none flex items-center justify-center">
+                    <div className="absolute inset-0 bg-cyan-400/40 rounded-full animate-pulse border-2 border-white shadow-[0_0_10px_rgba(34,211,238,0.8)] pointer-events-none flex items-center justify-center z-30">
                         <Snowflake size="50%" className="text-white animate-spin-slow" />
                     </div>
                 }
@@ -632,23 +639,31 @@ const GameEngine: React.FC<GameEngineProps> = ({ userProfile, onGameOver, onHome
 
         {projectiles.map(renderProjectile)}
 
-        {/* Hero */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center justify-end group z-10">
-            <div className="relative z-10">
-                <div className={`w-20 h-20 bg-slate-800 rounded-2xl shadow-[0_0_25px_rgba(37,99,235,0.6)] border-4 border-indigo-500 relative overflow-hidden animate-float`}>
-                     <img src={hero.avatarUrl} alt="Hero" className="w-full h-full object-cover" />
-                </div>
-                <div className="w-16 h-3 bg-black/60 blur-md rounded-full mt-4 mx-auto animate-pulse"></div>
-                <div className="absolute -top-2 -right-2 bg-amber-500 text-black text-xs font-bold px-2 py-0.5 rounded-full border-2 border-white shadow-lg">Lv.{hero.level}</div>
+        {/* Hero (New 2D Sprite Render) */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center justify-end group z-20 pointer-events-none">
+            <div className="relative w-28 h-28">
+                {/* Shadow at feet */}
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-20 h-3 bg-black/50 blur-md rounded-full"></div>
+                
+                {/* Hero Sprite */}
+                <img 
+                    src={hero.avatarUrl} 
+                    alt="Hero" 
+                    className="w-full h-full object-contain drop-shadow-2xl animate-float" 
+                    style={{ animationDuration: '3s' }}
+                />
+
+                {/* Level Badge */}
+                <div className="absolute -top-0 -right-2 bg-amber-500 text-black text-xs font-bold px-2 py-0.5 rounded-full border-2 border-white shadow-lg z-20">Lv.{hero.level}</div>
+                
                 {/* Stars In Game */}
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2 flex items-center gap-0.5 min-w-max">
-                     {/* Simplified Star Display in Game to avoid clutter */}
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 flex items-center gap-0.5 min-w-max z-20">
                      {Array.from({length: Math.min(6, stars)}).map((_,i) => (
-                        <Star key={i} size={10} className={`
+                        <Star key={i} size={10} className={`drop-shadow-md
                             ${stars > 12 ? 'fill-cyan-400 text-cyan-400' : stars > 6 ? 'fill-purple-400 text-purple-400' : 'fill-yellow-400 text-yellow-400'}
                         `} />
                      ))}
-                     {stars > 6 && <span className="text-[8px] font-black text-white bg-black/50 px-1 rounded ml-1">+{stars-6}</span>}
+                     {stars > 6 && <span className="text-[8px] font-black text-white bg-black/50 px-1 rounded ml-1 border border-white/20">+{stars-6}</span>}
                 </div>
             </div>
         </div>
