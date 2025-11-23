@@ -641,16 +641,19 @@ const GameEngine: React.FC<GameEngineProps> = ({ userProfile, onGameOver, onHome
 
         {/* Hero (New 2D Sprite Render) */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center justify-end group z-20 pointer-events-none">
-            <div className="relative w-28 h-28">
+            <div className="relative w-40 h-40"> {/* Larger Base Size */}
+                
+                {/* Aura */}
+                <div className="absolute inset-0 bg-indigo-500/20 blur-xl rounded-full animate-pulse"></div>
+
                 {/* Shadow at feet */}
-                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-20 h-3 bg-black/50 blur-md rounded-full"></div>
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-28 h-4 bg-black/60 blur-md rounded-full"></div>
                 
                 {/* Hero Sprite */}
                 <img 
                     src={hero.avatarUrl} 
                     alt="Hero" 
-                    className="w-full h-full object-contain drop-shadow-2xl animate-float" 
-                    style={{ animationDuration: '3s' }}
+                    className="relative w-full h-full object-contain drop-shadow-2xl animate-breathe z-10" 
                 />
 
                 {/* Level Badge */}

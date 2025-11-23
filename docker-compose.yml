@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: hero-tower-defense
+    restart: always
+    ports:
+      - "80:80"
+    # Port 80 is standard for accessing via IP directly
