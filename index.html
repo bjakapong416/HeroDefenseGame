@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,6 +25,8 @@
               'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
               'float': 'float 3s ease-in-out infinite',
               'breathe': 'breathe 4s ease-in-out infinite',
+              'spin-slow': 'spin 3s linear infinite',
+              'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             },
             keyframes: {
               float: {
@@ -57,6 +60,15 @@
       ::-webkit-scrollbar-thumb {
         background: #475569; 
         border-radius: 4px;
+      }
+      
+      /* 2.5D Effect Sprite Class - Reduced tilt to prevent scary faces */
+      .sprite-3d {
+        transform-origin: bottom center;
+        /* Slight tilt to look like a standing cardboard cutout, reduced from 10deg */
+        transform: perspective(500px) rotateX(5deg); 
+        filter: drop-shadow(0 4px 4px rgba(0,0,0,0.6));
+        will-change: transform;
       }
     </style>
   <script type="importmap">
