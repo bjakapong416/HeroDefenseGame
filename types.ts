@@ -14,7 +14,8 @@ export enum ViewState {
   GAME = 'GAME',
   HEROES = 'HEROES',
   GACHA = 'GACHA',
-  SKILLS = 'SKILLS'
+  SKILLS = 'SKILLS',
+  REWARDS = 'REWARDS'
 }
 
 export enum Rarity {
@@ -108,6 +109,7 @@ export interface UserProfile {
   selectedHeroId: string; // instanceId
   equippedSkills: SkillType[];
   progress: CampaignProgress;
+  lastDailyRewardClaim?: string; // Date string YYYY-MM-DD
 }
 
 // Runtime Game State

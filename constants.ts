@@ -103,14 +103,14 @@ export const HERO_POOL: HeroMetadata[] = [
 ];
 
 export const SKILL_POOL: SkillMetadata[] = [
-  // Cooldowns adjusted for distinct feel
-  { id: SkillType.LASER, name: 'Quick Beam', description: 'Rapid fire single target.', rarity: Rarity.R, icon: 'zap', cooldown: 400 }, // 0.4s (Very Fast)
-  { id: SkillType.BASIC, name: 'Arcane Bolt', description: 'Standard magic missile.', rarity: Rarity.R, icon: 'sparkles', cooldown: 1000 }, // 1.0s (Normal)
-  { id: SkillType.MULTI_SHOT, name: 'Volley', description: 'Fires 3 projectiles at once.', rarity: Rarity.SR, icon: 'layers', cooldown: 2500 }, // 2.5s
-  { id: SkillType.EXPLOSIVE, name: 'Fireball', description: 'Explodes on impact.', rarity: Rarity.SR, icon: 'flame', cooldown: 3500 }, // 3.5s
-  { id: SkillType.ICE_SHARD, name: 'Glacial Spike', description: 'Freezes enemies.', rarity: Rarity.SR, icon: 'snowflake', cooldown: 5000 }, // 5.0s (Control)
-  { id: SkillType.LIGHTNING, name: 'Chain Lightning', description: 'Chains damage to 5 targets.', rarity: Rarity.SSR, icon: 'zap', cooldown: 6000 }, // 6.0s
-  { id: SkillType.METEOR, name: 'Meteor Fall', description: 'Massive area nuke.', rarity: Rarity.SSR, icon: 'flame', cooldown: 10000 }, // 10.0s (Ultimate)
+  // Cooldowns adjusted for distinct feel - SLOWED DOWN
+  { id: SkillType.LASER, name: 'Quick Beam', description: 'Rapid fire single target.', rarity: Rarity.R, icon: 'zap', cooldown: 800 }, // 0.8s (Was 0.4s)
+  { id: SkillType.BASIC, name: 'Arcane Bolt', description: 'Standard magic missile.', rarity: Rarity.R, icon: 'sparkles', cooldown: 1500 }, // 1.5s (Was 1.0s)
+  { id: SkillType.MULTI_SHOT, name: 'Volley', description: 'Fires 3 projectiles at once.', rarity: Rarity.SR, icon: 'layers', cooldown: 5000 }, // 5.0s (Was 2.5s)
+  { id: SkillType.EXPLOSIVE, name: 'Fireball', description: 'Explodes on impact.', rarity: Rarity.SR, icon: 'flame', cooldown: 7000 }, // 7.0s (Was 3.5s)
+  { id: SkillType.ICE_SHARD, name: 'Glacial Spike', description: 'Freezes enemies.', rarity: Rarity.SR, icon: 'snowflake', cooldown: 9000 }, // 9.0s (Was 5.0s)
+  { id: SkillType.LIGHTNING, name: 'Chain Lightning', description: 'Chains damage to 5 targets.', rarity: Rarity.SSR, icon: 'zap', cooldown: 12000 }, // 12.0s (Was 6.0s)
+  { id: SkillType.METEOR, name: 'Meteor Fall', description: 'Massive area nuke.', rarity: Rarity.SSR, icon: 'flame', cooldown: 20000 }, // 20.0s (Was 10.0s)
 ];
 
 export const INITIAL_PROFILE: UserProfile = {

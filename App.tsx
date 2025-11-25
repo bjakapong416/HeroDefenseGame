@@ -9,7 +9,7 @@ import {
   EXP_SCALING, BASE_EXP_REQ, generateUpgrades, 
   INITIAL_PROFILE, HERO_POOL, SKILL_POOL, GACHA_COST, GACHA_COST_10
 } from './constants';
-import { HUD, LevelUpModal, GameOverModal, BottomNav, TopBar, MainMenu, GachaScreen, HeroScreen, SkillsScreen, LoginScreen, PauseModal } from './components/UIComponents';
+import { HUD, LevelUpModal, GameOverModal, BottomNav, TopBar, MainMenu, GachaScreen, HeroScreen, SkillsScreen, LoginScreen, PauseModal, RewardsScreen } from './components/UIComponents';
 import { Flame, Snowflake, Layers, Zap, Ghost, Skull, Shield, Crown, Wind, Hexagon, Star } from 'lucide-react';
 
 // --- Worker Blob for Background Timer ---
@@ -742,6 +742,17 @@ const App: React.FC = () => {
       });
       setView(ViewState.MAIN_MENU);
   };
+  
+  const handleClaimReward = () => {
+      const today = new Date().toLocaleDateString();
+      if (userProfile.lastDailyRewardClaim !== today) {
+          setUserProfile(prev => ({
+              ...prev,
+              gems: prev.gems + 10000,
+              lastDailyRewardClaim: today
+          }));
+      }
+  };
 
   return (
     <div className="relative w-full h-screen overflow-hidden bg-game-bg select-none font-sans">
@@ -757,6 +768,7 @@ const App: React.FC = () => {
                         {view === ViewState.GACHA && (<GachaScreen profile={userProfile} onPull={handleGachaPull} />)}
                         {view === ViewState.HEROES && (<HeroScreen profile={userProfile} onSelect={(id) => setUserProfile(p => ({...p, selectedHeroId: id}))} />)}
                         {view === ViewState.SKILLS && (<SkillsScreen profile={userProfile} />)}
+                        {view === ViewState.REWARDS && (<RewardsScreen profile={userProfile} onClaim={handleClaimReward} />)}
                     </div>
                     <BottomNav view={view} setView={setView} />
                 </>

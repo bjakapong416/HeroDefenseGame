@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { HeroState, UpgradeOption, GameStatus, SkillType, ViewState, UserProfile, HeroMetadata, Rarity, Difficulty, CampaignProgress } from '../types';
 import { HERO_POOL, SKILL_POOL, GACHA_COST, GACHA_COST_10 } from '../constants';
-import { Heart, Zap, Shield, Play, RotateCw, FastForward, Snowflake, Flame, Layers, Sparkles, ChevronRight, User, Gem, Menu, Star, Sword, BookOpen, X, Lock, LogIn, Pause, AlertTriangle, Share2, Timer, MapPin, Clock, Crosshair, Swords, Crown, MoreHorizontal, Dice5 } from 'lucide-react';
+import { Heart, Zap, Shield, Play, RotateCw, FastForward, Snowflake, Flame, Layers, Sparkles, ChevronRight, User, Gem, Menu, Star, Sword, BookOpen, X, Lock, LogIn, Pause, AlertTriangle, Share2, Timer, MapPin, Clock, Crosshair, Swords, Crown, MoreHorizontal, Dice5, Gift } from 'lucide-react';
 
 // --- HELPER: Star Renderer ---
 const renderStars = (starCount: number) => {
@@ -89,6 +89,7 @@ export const BottomNav: React.FC<{ view: ViewState, setView: (v: ViewState) => v
     { id: ViewState.HEROES, icon: User, label: 'Heroes' },
     { id: ViewState.GACHA, icon: Star, label: 'Summon' },
     { id: ViewState.SKILLS, icon: BookOpen, label: 'Skills' },
+    { id: ViewState.REWARDS, icon: Gift, label: 'Rewards' },
   ];
 
   return (
@@ -425,6 +426,70 @@ export const SkillsScreen: React.FC<{ profile: UserProfile }> = ({ profile }) =>
         </div>
     );
 }
+
+// --- Rewards Screen ---
+export const RewardsScreen: React.FC<{ profile: UserProfile, onClaim: () => void }> = ({ profile, onClaim }) => {
+    const today = new Date().toLocaleDateString();
+    const isClaimed = profile.lastDailyRewardClaim === today;
+
+    return (
+        <div className="w-full h-full pt-20 pb-24 px-4 flex flex-col items-center relative overflow-hidden">
+             {/* Background effects */}
+             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 animate-pulse pointer-events-none"></div>
+             
+             <h2 className="text-3xl font-black text-white mb-8 uppercase tracking-wider drop-shadow-lg flex items-center gap-2">
+                <Gift size={32} className="text-pink-500" /> Daily Supply
+             </h2>
+
+             <div className="flex-1 flex flex-col items-center justify-center w-full max-w-md">
+                 <div className={`relative w-64 h-64 mb-8 flex items-center justify-center transition-all duration-700 ${isClaimed ? 'grayscale opacity-50' : 'animate-float'}`}>
+                     {/* Glowing background */}
+                     <div className={`absolute inset-0 bg-pink-500/30 blur-[60px] rounded-full ${isClaimed ? 'hidden' : 'animate-pulse'}`}></div>
+                     
+                     {/* Chest Icon */}
+                     <Gift size={120} className={`text-pink-400 drop-shadow-[0_0_20px_rgba(236,72,153,0.6)] ${isClaimed ? '' : 'animate-bounce'}`} fill={isClaimed ? 'none' : 'currentColor'} strokeWidth={1} />
+                     
+                     {!isClaimed && (
+                        <div className="absolute -top-4 -right-4 bg-yellow-400 text-black font-black text-xs px-2 py-1 rounded-full animate-bounce delay-100">
+                            READY!
+                        </div>
+                     )}
+                 </div>
+
+                 <div className="bg-slate-900/80 backdrop-blur-md border border-slate-700 p-6 rounded-3xl w-full text-center shadow-xl">
+                     <h3 className="text-white font-bold text-xl mb-2">Login Bonus</h3>
+                     <p className="text-slate-400 text-sm mb-6">Support package from HQ. Contains Gems for summoning new heroes.</p>
+                     
+                     <div className="flex items-center justify-center gap-2 mb-6 bg-slate-950/50 py-3 rounded-xl border border-slate-800">
+                         <Gem size={24} className="text-pink-500" fill="currentColor"/>
+                         <span className="text-3xl font-black text-white">10,000</span>
+                     </div>
+
+                     <button 
+                        onClick={onClaim}
+                        disabled={isClaimed}
+                        className={`w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-all shadow-lg
+                            ${isClaimed 
+                                ? 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700' 
+                                : 'bg-gradient-to-r from-pink-600 to-purple-600 text-white hover:scale-105 active:scale-95 shadow-pink-900/40'
+                            }
+                        `}
+                     >
+                        {isClaimed ? (
+                            <>
+                                <Clock size={20} /> COME BACK TOMORROW
+                            </>
+                        ) : (
+                            <>
+                                <Gift size={20} /> CLAIM REWARD
+                            </>
+                        )}
+                     </button>
+                 </div>
+             </div>
+        </div>
+    );
+};
 
 // --- HUD (UPDATED) ---
 interface HUDProps {
